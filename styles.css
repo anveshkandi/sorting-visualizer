@@ -1,0 +1,47 @@
+body {
+    background-color: rgb(35, 35, 35);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    border: 1px solid red;
+    gap: 20px;
+}
+
+.container .settings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid red;
+}
+
+.visualizer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2;
+    flex-direction: column;
+}
+.visualizer-container .box {
+    display: flex;
+    border: 1px solid red;
+    width: 75em;
+    height: 50em;
+    position: relative;
+    bottom: 0;
+    /* background-color: white; */
+}
+
+.box .element {
+    background-color: black;
+    border: 1px solid white;
+    align-self: flex-end;
+    position: absolute;
+    bottom: 0;
+}
+
+.footer {
+    background-color: white;
+}
