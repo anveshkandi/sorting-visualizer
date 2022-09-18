@@ -1,7 +1,10 @@
 const box = document.querySelector('.box');
-const randomButton = document.querySelector('.randomBtn')
-const sortButton = document.querySelector('.sortBtn')
-let barCount = 20;
+const randomButton = document.querySelector('.randomBtn');
+const bblButton = document.querySelector('.bblBtn');
+const selButton = document.querySelector('.selBtn');
+const BLUE = "element-blue";
+
+let barCount = 100;
 let BAR_WIDTH = 100 / barCount;
 let BAR_HEIGHT = 100 / barCount;
 
@@ -10,40 +13,53 @@ var elements = []
 for (var i = 0; i<barCount; i++){
     const div = document.createElement('div');
     div.className = "element";
-    div.textContent = i + 1;
+    // div.textContent = i + 1;
     div.style.height = (i+1)*BAR_HEIGHT + "%";
     div.style.width = BAR_WIDTH + "%"
     div.style.left = i*BAR_WIDTH + "%";
     elements.push(div);
     box.appendChild(div);
 }
-// [bars[0].style.left, bars[99].style.left] = [bars[99].style.left, bars[0].style.left];
 
-function randomize(bars){
+async function randomize(bars){
     for (var i = bars.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
-        [bars[i].style.left, bars[j].style.left] = [bars[j].style.left, bars[i].style.left];
-        [bars[i],bars[j]] = [bars[j],bars[i]]
+        await swap(i,j);
     }
-    console.log(bars[0].style.height);
 }
 
-function bblSort(bars){
-    console.log("Entering sort!");
+async function bblSort(bars){
     for(var i = 1; i < bars.length; i++){
       for(var j = 0; j < ( bars.length - i); j++){
-        if(bars[j].style.height > bars[j+1].style.height){
-            console.log("Ahh!");
-            [bars[j].style.left, bars[j+1].style.left] = [bars[j+1].style.left, bars[j].style.left];
+        if(bars[j].offsetHeight > bars[j+1].offsetHeight){
+            await swap(j,j+1);
         }
       }
     }
    }
 
+async function swap (i,j){
+    elements[i].classList.add(BLUE);
+    [elements[i].style.left, elements[j].style.left] = [elements[j].style.left, elements[i].style.left];
+    [elements[i],elements[j]] = [elements[j],elements[i]];
+    await sleep(15);
+    elements[j].classList.remove(BLUE);
+}
+
+function sleep(delay) {
+    return new Promise(resolve => {
+        setTimeout(resolve, delay);
+    });
+}
+
 randomButton.addEventListener('click', ()=> {
     randomize(elements);
 })
 
-sortButton.addEventListener('click', ()=> {
+bblButton.addEventListener('click', ()=> {
+    bblSort(elements);
+})
+
+selButton.addEventListener('click', ()=> {
     bblSort(elements);
 })

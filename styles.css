@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(35, 35, 35);
+    background-color: rgb(49, 49, 49);
 }
 
 .container {
@@ -14,7 +14,6 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid red;
 }
 
 .visualizer-container {
@@ -24,12 +23,10 @@ body {
     margin: 2;
     flex-direction: column;
     width: 90%;
-    border: 1px solid red;
 }
 
 .box {
     display: flex;
-    border: 1px solid red;
     width: 90%;
     height: 50em;
     position: relative;
@@ -37,9 +34,9 @@ body {
     /* background-color: white; */
 }
 
-.box .element {
-    background-color: black;
-    border: 1px solid white;
+.element {
+    background: linear-gradient(rgb(97, 17, 17) 0%, rgb(80, 80, 80) 90.2%);
+    /* border: 1px solid white; */
     color: white;
     align-self: flex-end;
     position: absolute;
@@ -48,4 +45,8 @@ body {
 
 .footer {
     background-color: white;
+}
+
+.element-blue {
+    background: linear-gradient(rgb(25, 0, 255) 0%, rgb(80, 80, 80) 90.2%);
 }
