@@ -35,7 +35,7 @@ body {
 }
 
 .element {
-    background: linear-gradient(rgb(97, 17, 17) 0%, rgb(80, 80, 80) 90.2%);
+    background: linear-gradient(rgb(255, 255, 255) 0%, rgb(0,0,0) 100%);
     /* border: 1px solid white; */
     color: white;
     align-self: flex-end;
@@ -47,6 +47,10 @@ body {
     background-color: white;
 }
 
+.element-red {
+    background: red;
+}
+
 .element-blue {
-    background: linear-gradient(rgb(25, 0, 255) 0%, rgb(80, 80, 80) 90.2%);
+    background: blue;
 }
