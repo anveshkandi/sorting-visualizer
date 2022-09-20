@@ -8,22 +8,29 @@
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <body>
     <div class="container">
         <div class="visualizer-container">
             <div class="top-container">
                 <h2 style="color:rgb(255, 255, 255); font-family: 'Poiret One'; font-size: 48px; letter-spacing: .2em;">SORTING VISUALIZER</h2>
-                <button class="topBtn" id="sortStartBtn">SORT</button>
+                <div class="dropdown-menu" data-dropdown>
+                    <button class="topBtn" id="sortSelBtn" data-dropdown-button>Choose A Sort</button>
+                    <div class="sort-menu">
+                        <div class="dropdown-option">Bubble Sort</div>
+                        <div class="dropdown-option">Selection Sort</div>
+                        <div class="dropdown-option">Insertion Sort</div>
+                        <div class="dropdown-option">Quick Sort</div>
+                        <div class="dropdown-option">Heap Sort</div>
+                    </div>
+                </div>
+            
                 <div class="settings">
-                    <ul>
+                    <ul class="settings-list">
                         <li><button class="topBtn" id="randomBtn">Randomize</button></li>
-                        <li><div class="dropdown-menu">
-                            <button class="topBtn" id="sortSelBtn">Choose A Sort</button>
-                            <div class="sort-menu">
-                                Content
-                            </div>
-                        </div></li>
+                        <li><button class="topBtn" id="sortStartBtn">SORT</button></li>
                     </ul>
                     <!-- <button class="bblBtn">Bubble Sort</button>
                     <button class="selBtn">Selection Sort</button> -->
@@ -37,6 +44,17 @@
         </div>
     </div>
 
-    <div class="footer">Footer</div>
+    <div class="footer">
+    <p>
+        Copyright ©
+        <script>
+        document.write(new Date().getFullYear())
+        </script>
+        Anvesh Kandi
+    </p>
+    <a href="https://github.com/mynameisanv" target="_blank">
+        <i class="fa fa-github fa-custom fa-2x"></i>
+    </a>
+</div>
 </body>
 </html>

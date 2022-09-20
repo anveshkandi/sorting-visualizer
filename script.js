@@ -1,7 +1,10 @@
 const box = document.querySelector('.box');
-const randomButton = document.querySelector('.randomBtn');
+const randomButton = document.getElementById('randomBtn');
+const selButton = document.getElementById('sortStartBtn');
 const bblButton = document.querySelector('.bblBtn');
-const selButton = document.querySelector('.selBtn');
+const dropMenuButton = document.getElementById('sortSelBtn');
+const dropMenu = document.querySelector('.dropdown-menu');
+const dropDownOptions = document.querySelectorAll('.dropdown-option');
 const RED = "element-red";
 const BLUE = "element-blue";
 const GREEN = "element-green";
@@ -10,7 +13,9 @@ const GREEN = "element-green";
 let barCount = 100;
 let BAR_SIZE = 100 / barCount;
 let delay = 100;
+let currSortOption = '';
 var elements = [];
+
 
 // Generates original set sorted bars
 for (var i = 0; i<barCount; i++){
@@ -49,13 +54,43 @@ function sleep(delay) {
 randomButton.addEventListener('click', ()=> {
     randomize(elements);
 })
-bblButton.addEventListener('click', ()=> {
-    bblSort(elements);
-})
+// bblButton.addEventListener('click', ()=> {
+//     bblSort(elements);
+// })
 selButton.addEventListener('click', ()=> {
     selSort(elements);
 })
 
+// Handles sort menu drop down
+document.addEventListener('click', e => {
+    const isDropdownButton = e.target.matches('[data-dropdown-button]');
+
+    if (!isDropdownButton && e.target.closest('[data-dropdown]') != null) return;
+
+    let currentDropdown; //Button that opens dropdwon menu 
+    if(isDropdownButton) {
+        currentDropdown = e.target.closest('[data-dropdown]');
+        currentDropdown.classList.toggle('active');
+    }
+
+
+    document.querySelectorAll('[data-dropdown].active').forEach(dropdown => {
+        if (dropdown == currentDropdown) return;
+        dropdown.classList.remove('active');
+    })
+})
+
+// Adds a click event listener to all of the drop down menu options
+// Allows user to select a sort from drop down menu
+// When user selects option, displays the current sort option
+for (let i=0; i < dropDownOptions.length; i++){
+    dropDownOptions[i].addEventListener('click', () => {
+        dropMenuButton.innerHTML = dropDownOptions[i].innerHTML;
+        currSortOption = dropDownOptions[i].innerHTML;
+        console.log(currSortOption);
+        dropMenu.classList.toggle('active');
+    })
+}
 
 //////////////////////////////////////////
 //            SORT FUNCTIONS            //
