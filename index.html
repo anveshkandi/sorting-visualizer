@@ -7,18 +7,29 @@
     <title>Sorting Visualizer</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container flex">
-        <div class="settings">
-            <h2>Settings</h2>
-            <button class="randomBtn">Randomize</button>
-            <button class="bblBtn">Bubble Sort</button>
-            <button class="selBtn">Selection Sort</button>
-        </div>
-
+    <div class="container">
         <div class="visualizer-container">
-            <h2 style="color:white">Sorting Visualizer</h2>
+            <div class="top-container">
+                <h2 style="color:rgb(255, 255, 255); font-family: 'Poiret One'; font-size: 48px; letter-spacing: .2em;">SORTING VISUALIZER</h2>
+                <button class="topBtn" id="sortStartBtn">SORT</button>
+                <div class="settings">
+                    <ul>
+                        <li><button class="topBtn" id="randomBtn">Randomize</button></li>
+                        <li><div class="dropdown-menu">
+                            <button class="topBtn" id="sortSelBtn">Choose A Sort</button>
+                            <div class="sort-menu">
+                                Content
+                            </div>
+                        </div></li>
+                    </ul>
+                    <!-- <button class="bblBtn">Bubble Sort</button>
+                    <button class="selBtn">Selection Sort</button> -->
+                </div>
+            </div>
+
             <div class="box">
                 <!-- <div class="element" style="left:0%; width:5%; height:30%"></div>
                 <div class="element" style="left:5%; width:5%; height:30%"></div> -->

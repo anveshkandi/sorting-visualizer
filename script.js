@@ -4,20 +4,21 @@ const bblButton = document.querySelector('.bblBtn');
 const selButton = document.querySelector('.selBtn');
 const RED = "element-red";
 const BLUE = "element-blue";
+const GREEN = "element-green";
 
-let barCount = 20;
-let BAR_WIDTH = 100 / barCount;
-let BAR_HEIGHT = 100 / barCount;
+
+let barCount = 100;
+let BAR_SIZE = 100 / barCount;
 let delay = 100;
-var elements = []
+var elements = [];
 
 // Generates original set sorted bars
 for (var i = 0; i<barCount; i++){
     const div = document.createElement('div');
     div.className = "element";
-    div.style.height = (i+1)*BAR_HEIGHT + "%";
-    div.style.width = BAR_WIDTH + "%"
-    div.style.left = i*BAR_WIDTH + "%";
+    div.style.height = (i+1)*BAR_SIZE + "%";
+    div.style.width = BAR_SIZE + "%"
+    div.style.left = i*BAR_SIZE + "%";
     elements.push(div);
     box.appendChild(div);
 }
@@ -26,10 +27,11 @@ for (var i = 0; i<barCount; i++){
 async function randomize(bars){
     for (var i = bars.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
-        await swap(i,j, 5);
+        await swap(i,j, 10);
     }
 }
 
+// Swaps two values in an array, paints swapped bar red
 async function swap (i,j, delay){
     elements[i].classList.add(RED);
     [elements[i].style.left, elements[j].style.left] = [elements[j].style.left, elements[i].style.left];
@@ -47,11 +49,9 @@ function sleep(delay) {
 randomButton.addEventListener('click', ()=> {
     randomize(elements);
 })
-
 bblButton.addEventListener('click', ()=> {
     bblSort(elements);
 })
-
 selButton.addEventListener('click', ()=> {
     selSort(elements);
 })
@@ -87,3 +87,4 @@ async function selSort(bars){
         }
     }
 }
+

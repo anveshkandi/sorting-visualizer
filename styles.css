@@ -1,56 +1,133 @@
 body {
-    background-color: rgb(49, 49, 49);
+    background-color: rgba(0, 0, 0, 0.979);
 }
 
 .container {
     display: flex;
     justify-content: center;
-    border: 1px solid red;
+    align-items: center;
+    flex-direction: column;
+    /* border: 1px solid red; */
     gap: 20px;
 }
 
-.container .settings {
+/* TOP CONTAINER */
+.top-container {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 5em;
+    /* border: 1px solid red; */
+}
+
+.topBtn {
+    font-family: 'Poiret One';
+    font-size: 16px;
+    letter-spacing: 2px;
+    height: 50px;
+    border: 1px solid white;
+    background-color: black;
+    color: white;
+    font-weight: 900;
+}
+
+#sortStartBtn {
+    width: 150px;
+}
+
+.dropdown-menu {
+    position: relative;
+}
+
+.sort-menu {
+    position: absolute;
+    left: 0;
+    top: calc(100% + .25rem);
+    background-color: white;
+    border-radius: .25rem;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 100ms ease-in-out, transform 150ms ease-in-out;
+    pointer-events: none;
+}
+
+.dropdown-menu > .sort-dropdown:focus + .sort-menu {
+    opacity:1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+li {
+    display: inline-block; 
+    list-style: none;
+    min-width: none;
+    margin: 0;
+    gap: 10px;
+}
+
+
+
+
+/* SETTINGS */
+.settings {
+    display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
 }
 
 .visualizer-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 2;
     flex-direction: column;
-    width: 90%;
+    width: 95%;
+    /* border: 1px solid red; */
+    gap: 10px;
 }
 
+/* BAR CONTAINER */
 .box {
     display: flex;
-    width: 90%;
+    width: 100%;
     height: 50em;
     position: relative;
     bottom: 0;
-    /* background-color: white; */
 }
 
+
+
+
+/* BARS */
 .element {
-    background: linear-gradient(rgb(255, 255, 255) 0%, rgb(0,0,0) 100%);
+    background: linear-gradient(#00FFFF 0%, rgb(0, 0, 0) 100%);
     /* border: 1px solid white; */
     color: white;
     align-self: flex-end;
     position: absolute;
     bottom: 0;
+    padding: 0 2px 0 0;
 }
 
-.footer {
-    background-color: white;
-}
 
+
+/* SORT ANIMATION COLORS */
 .element-red {
     background: red;
 }
 
 .element-blue {
-    background: blue;
+    background: rgb(255, 255, 255);
+}
+
+.element-green {
+    background: green;
+}
+
+
+/* FOOTER */
+.footer {
+    background-color: white;
 }
