@@ -15,7 +15,7 @@
     <div class="container">
         <div class="visualizer-container">
             <div class="top-container">
-                <h2 style="color:rgb(255, 255, 255); font-family: 'Poiret One'; font-size: 48px; letter-spacing: .2em;">SORTING VISUALIZER</h2>
+                <h2 style="color:rgb(255, 255, 255); font-family: 'Poiret One'; font-size: 36px; letter-spacing: .2em;">SORTING VISUALIZER</h2>
                 <div class="dropdown-menu" data-dropdown>
                     <button class="topBtn" id="sortSelBtn" data-dropdown-button>Choose A Sort</button>
                     <div class="sort-menu">
@@ -26,6 +26,11 @@
                         <div class="dropdown-option">Heap Sort</div>
                     </div>
                 </div>
+
+                <div class="slidecontainer">
+                    <input type="range" min="10" max="1000" value="100" step="10" class="slider" id="myRange">
+                    <p class="slider-val">Elements: 100</p>
+                  </div>
             
                 <div class="settings">
                     <ul class="settings-list">
@@ -44,17 +49,11 @@
         </div>
     </div>
 
-    <div class="footer">
-    <p>
-        Copyright ©
-        <script>
-        document.write(new Date().getFullYear())
-        </script>
-        Anvesh Kandi
-    </p>
+    <footer class="footer">
+    <p> Contact: kandianvesh@gmail.com | Github:</p>
     <a href="https://github.com/mynameisanv" target="_blank">
         <i class="fa fa-github fa-custom fa-2x"></i>
     </a>
-</div>
+</footer>
 </body>
 </html>

@@ -51,6 +51,10 @@ body {
     width: 200px;
 }
 
+.error {
+    background-color: rgb(146, 2, 2);
+}
+
 .dropdown-menu {
     position: relative;
 }
@@ -69,6 +73,8 @@ body {
     transition: opacity 50ms ease-in-out, transform 50ms ease-in-out;
     pointer-events: none;
     border: 1px solid #00FFFF;
+    z-index: 100;
+    background-color: black;
 }
 
 .sort-menu > div {
@@ -81,6 +87,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: bold;
+    transition: 75ms;
     /* border: 1px solid white; */
 }
 
@@ -110,6 +118,54 @@ body {
     gap: 10px;
 }
 
+
+/* SLIDER */
+
+.slidecontainer {
+    width: 25%; /* Width of the outside container */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    /* border: 1px solid #00FFFF; */
+  }
+
+.slidecontainer > p {
+    font-family: 'Poiret One';
+    letter-spacing: 2px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
+  
+  /* The slider itself */
+  .slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 50%; /* Full-width */
+    height: 10px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 1; /* Set transparency (for mouse-over effects on hover) */
+  }
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 10px; /* Set a specific slider handle width */
+    height: 20px; /* Slider handle height */
+    background: #00FFFF; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #04AA6D; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+
+
 .visualizer-container {
     display: flex;
     justify-content: center;
@@ -125,6 +181,7 @@ body {
     display: flex;
     width: 100%;
     height: 50em;
+    min-height: 25em;
     position: relative;
     bottom: 0;
     pointer-events: none;
@@ -162,8 +219,9 @@ body {
 
 /* FOOTER */
 
-.footer {
+footer {
     /* border: 1px solid red; */
+    font-family: 'Poiret One';
     color: rgb(255, 255, 255);
     bottom: 0;
     right: 0;
@@ -171,15 +229,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    margin-top: auto;
+    gap: 5px;
 }
 
 
-.footer a {
+footer a {
     color:rgb(255, 255, 255);
     transition: transform 0.2s;
 }
 
-.footer a:hover {
+footer a:hover {
    transform: scale(1.2);
 }
