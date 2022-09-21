@@ -24,8 +24,14 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 5em;
+    height: 4em;
     /* border: 1px solid red; */
+}
+
+.topBtns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .topBtn {
@@ -98,17 +104,6 @@ body {
     pointer-events: auto;
 }
 
-.settings-list > li {
-    display: inline-block; 
-    list-style: none;
-    min-width: none;
-    margin: 0;
-    gap: 10px;
-}
-
-
-
-
 
 /* SETTINGS */
 .settings {
@@ -118,6 +113,13 @@ body {
     gap: 10px;
 }
 
+.settings-list > li {
+    display: inline-block; 
+    list-style: none;
+    min-width: none;
+    margin: 0;
+    gap: 10px;
+}
 
 /* SLIDER */
 
