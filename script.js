@@ -6,7 +6,7 @@ const bblButton = document.querySelector('.bblBtn');
 const dropMenu = document.querySelector('.dropdown-menu');
 const dropDownOptions = document.querySelectorAll('.dropdown-option');
 const RED = "element-red";
-const BLUE = "element-blue";
+const WHITE = "element-white";
 const GREEN = "element-green";
 
 var slide = document.querySelector('.slider'), 
@@ -35,6 +35,9 @@ sortButton.addEventListener('click', ()=>{
         break;
     case 'Selection Sort':
         selSort(elements);
+        break;
+    case 'Insertion Sort':
+        insSort(elements);
         break;
     default:
         dropMenuButton.classList.add('error');
@@ -153,10 +156,26 @@ async function selSort(bars){
         }
 
         if (i != min) {
-            bars[min].classList.add(BLUE);
+            bars[min].classList.add(WHITE);
             await swap(i, min, delay);
-            bars[i].classList.remove(BLUE);
+            bars[i].classList.remove(WHITE);
         }
     }
+}
+
+async function insSort(bars){
+    delay = 5000/bars.length;
+    for (let i=1; i < bars.length; i++) {
+        let j = i;
+        while((j > 0) && (bars[j].offsetHeight < bars[j-1].offsetHeight)){
+            await swap(j, j-1, delay);
+            j--;
+        }
+    }
+}
+
+async function quickSort(bars, left, right){
+    delay = 5000/bars.length;
+
 }
 
