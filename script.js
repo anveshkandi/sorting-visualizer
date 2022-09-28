@@ -7,7 +7,7 @@ const dropMenu = document.querySelector('.dropdown-menu');
 const dropDownOptions = document.querySelectorAll('.dropdown-option');
 const RED = "element-red";
 const WHITE = "element-white";
-const GREEN = "element-green";
+const PINK = "element-pink";
 
 var slide = document.querySelector('.slider'), 
     sliderVal = document.querySelector('.slider-val');
@@ -38,6 +38,9 @@ sortButton.addEventListener('click', ()=>{
         break;
     case 'Insertion Sort':
         insSort(elements);
+        break;
+    case 'Quick Sort':
+        quickSort(elements, 0, elements.length - 1);
         break;
     default:
         dropMenuButton.classList.add('error');
@@ -117,11 +120,11 @@ async function randomize(bars){
 
 // Swaps two values in an array, paints swapped bar red
 async function swap (i,j, delay){
-    elements[i].classList.add(RED);
+    changeColor(i, RED);
     [elements[i].style.left, elements[j].style.left] = [elements[j].style.left, elements[i].style.left];
     [elements[i],elements[j]] = [elements[j],elements[i]];
     await sleep(delay);
-    elements[j].classList.remove(RED);
+    resetColor(j);
 }
 
 function sleep(delay) {
@@ -130,13 +133,23 @@ function sleep(delay) {
     });
 }
 
+function changeColor(i, color) {
+    elements[i].classList.add(color);
+}
+
+function resetColor(i) {
+    elements[i].classList.remove(RED);
+    elements[i].classList.remove(WHITE);
+    elements[i].classList.remove(PINK);
+}
+
 //////////////////////////////////////////
 //            SORT FUNCTIONS            //
 //////////////////////////////////////////
 
 // BUBBLE SORT
 async function bblSort(bars){
-    delay = 5000/bars.length;
+    delay = 4000/bars.length;
     for(var i = 1; i < bars.length; i++){
       for(var j = 0; j < ( bars.length - i); j++){
         if(bars[j].offsetHeight > bars[j+1].offsetHeight){
@@ -148,7 +161,7 @@ async function bblSort(bars){
 
 // SELECTION SORT
 async function selSort(bars){
-    delay = 5000/bars.length;
+    delay = 4000/bars.length;
     for (let i = 0; i < bars.length; i++){
         let min = i;
         for (let j = i+1; j < bars.length; j++){
@@ -156,15 +169,15 @@ async function selSort(bars){
         }
 
         if (i != min) {
-            bars[min].classList.add(WHITE);
+            changeColor(min, WHITE);
             await swap(i, min, delay);
-            bars[i].classList.remove(WHITE);
+            resetColor(i);
         }
     }
 }
 
 async function insSort(bars){
-    delay = 5000/bars.length;
+    delay = 4000/bars.length;
     for (let i=1; i < bars.length; i++) {
         let j = i;
         while((j > 0) && (bars[j].offsetHeight < bars[j-1].offsetHeight)){
@@ -173,9 +186,3 @@ async function insSort(bars){
         }
     }
 }
-
-async function quickSort(bars, left, right){
-    delay = 5000/bars.length;
-
-}
-
