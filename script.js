@@ -42,6 +42,9 @@ sortButton.addEventListener('click', ()=>{
     case 'Quick Sort':
         quickSort(elements, 0, elements.length - 1);
         break;
+    case 'Heap Sort':
+        heapSort(elements);
+        break;
     default:
         dropMenuButton.classList.add('error');
         break;
@@ -185,4 +188,41 @@ async function insSort(bars){
             j--;
         }
     }
+}
+
+
+
+// HEAP SORT    
+async function heapSort(bars){
+    delay = 5000/bars.length;
+    let length = elements.length;
+    let i = Math.floor(length / 2 - 1);
+    let k = length - 1;
+
+    while (i >= 0) {
+        await heapify(bars, length, i);
+        i--;
+    }
+
+    while (k >= 0){
+        await swap(0, k, delay);
+        await heapify(bars, k, 0, delay);
+        k--;
+    }
+}
+
+//Heap sort helper function
+async function heapify(bars, length, i, delay){
+    let largest = i;
+    let l = i*2 + 1;
+    let r = l + 1;
+
+    if(l < length && (bars[l].offsetHeight >= bars[largest].offsetHeight)) largest = l;
+    if(r < length && (bars[r].offsetHeight >= bars[largest].offsetHeight)) largest = r;
+
+    if (largest != i){
+        await swap(i, largest, delay);
+        await heapify(bars, length, largest);
+    }
+
 }
