@@ -18,6 +18,8 @@ let barSize = 100 / barCount;
 let delay = 100;
 let currSortOption = '';
 var elements = [];
+const audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+const VOLUME = 0.005;
 
 window.addEventListener('load', ()=>{
     genBars(barCount);
@@ -128,10 +130,26 @@ async function randomize(bars){
 // Swaps two values in an array, paints swapped bar red
 async function swap (i,j, delay){
     changeColor(i, RED);
+    let freq = Math.floor(( (elements[i].offsetHeight + elements[j].offsetHeight) / 200) * (600 - 200) + 200);
+    playNote(freq, 20);
     [elements[i].style.left, elements[j].style.left] = [elements[j].style.left, elements[i].style.left];
     [elements[i],elements[j]] = [elements[j],elements[i]];
     await sleep(delay);
     resetColor(j);
+}
+
+function playNote(frequency, duration) {
+    const oscillator = new OscillatorNode(audioCtx);
+    const gainNode = new GainNode(audioCtx);
+    oscillator.type = "square";
+    oscillator.frequency.value = frequency; // value in hertz
+    gainNode.gain.value = VOLUME;
+    oscillator.connect(gainNode).connect(audioCtx.destination);
+    oscillator.start();
+
+    setTimeout(function() {
+        oscillator.stop();
+    }, duration);
 }
 
 function sleep(delay) {
