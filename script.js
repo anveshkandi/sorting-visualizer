@@ -45,6 +45,9 @@ sortButton.addEventListener('click', ()=>{
     case 'Heap Sort':
         heapSort(elements);
         break;
+    case 'Merge Sort':
+        mergeSort(elements, 0, elements.length);
+        break;
     default:
         dropMenuButton.classList.add('error');
         break;
@@ -94,6 +97,7 @@ function genBars(barCount){
     clearBox(box);
     barSize = 100 / barCount;
     elements = [];
+    delay = 4500 / barCount;
 
     for (var i = 0; i<barCount; i++){
         const div = document.createElement('div');
@@ -152,7 +156,6 @@ function resetColor(i) {
 
 // BUBBLE SORT
 async function bblSort(bars){
-    delay = 4000/bars.length;
     for(var i = 1; i < bars.length; i++){
       for(var j = 0; j < ( bars.length - i); j++){
         if(bars[j].offsetHeight > bars[j+1].offsetHeight){
@@ -164,7 +167,6 @@ async function bblSort(bars){
 
 // SELECTION SORT
 async function selSort(bars){
-    delay = 4000/bars.length;
     for (let i = 0; i < bars.length; i++){
         let min = i;
         for (let j = i+1; j < bars.length; j++){
@@ -179,8 +181,8 @@ async function selSort(bars){
     }
 }
 
+// INSERTION SORT
 async function insSort(bars){
-    delay = 4000/bars.length;
     for (let i=1; i < bars.length; i++) {
         let j = i;
         while((j > 0) && (bars[j].offsetHeight < bars[j-1].offsetHeight)){
@@ -190,20 +192,43 @@ async function insSort(bars){
     }
 }
 
+// QUICK SORT
+async function quickSort(bars, left, right) {
+    if (left < right) {
+        let pivot = left;
+        changeColor(pivot, PINK);
+        let i = left;
+        let j = right;
 
+        while (i < j) {
+            while((bars[pivot].offsetHeight > bars[i].offsetHeight) && (i < j)) {
+                i++;
+            }
+            while(bars[pivot].offsetHeight < bars[j].offsetHeight) {
+                j--;
+            }
+
+            if (i < j) await swap(i, j, delay);
+        }
+
+        await swap(pivot, j, delay);
+        resetColor(pivot);
+        await quickSort(bars, left, j - 1);
+        await quickSort(bars, j + 1, right);
+    }
+}
 
 // HEAP SORT    
 async function heapSort(bars){
-    delay = 5000/bars.length;
     let length = elements.length;
     let i = Math.floor(length / 2 - 1);
     let k = length - 1;
-
+    
     while (i >= 0) {
         await heapify(bars, length, i);
         i--;
     }
-
+    
     while (k >= 0){
         await swap(0, k, delay);
         await heapify(bars, k, 0, delay);
@@ -212,17 +237,47 @@ async function heapSort(bars){
 }
 
 //Heap sort helper function
-async function heapify(bars, length, i, delay){
+async function heapify(bars, length, i){
     let largest = i;
     let l = i*2 + 1;
     let r = l + 1;
-
+    
     if(l < length && (bars[l].offsetHeight >= bars[largest].offsetHeight)) largest = l;
     if(r < length && (bars[r].offsetHeight >= bars[largest].offsetHeight)) largest = r;
-
+    
     if (largest != i){
         await swap(i, largest, delay);
         await heapify(bars, length, largest);
     }
+    
+}
 
+// MERGE SORT
+async function mergeSort(bars, start, end) {
+    if (start >= end - 1) return;
+    var mid = start + ~~((end - start) / 2);
+
+    await mergeSort(bars, start, mid);
+    await mergeSort(bars, mid, end);
+
+    var cache = Array(end - start).fill(bars[0]);
+    var k = mid;
+
+    for (var i = start, r = 0; i < mid; r++, i++){
+        while (k < end && bars[k].offsetHeight < bars[i].offsetHeight){
+            cache[r] = bars[k];
+            r++;
+            k++;
+        }
+
+        cache[r] = bars[i];
+    }
+
+    for (let i = 0; i < k - start; i++){
+        bars[i + start] = cache[i];
+        bars[i + start].style.left = (100 / elements.length) * (i + start) + "%";
+        changeColor(i + start, RED);
+        await sleep(delay);
+        resetColor(i + start);
+    }
 }
